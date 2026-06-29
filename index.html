@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>emveg — animation & games</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F7F5F0;
+  --card: #FFFFFF;
+  --text: #1A1A18;
+  --muted: #888880;
+  --border: #E6E3DC;
+  --mint: #C8EDD8;
+  --mint-text: #1A5C38;
+  --peach: #FFD9C8;
+  --peach-text: #7A3018;
+  --lavender: #DDD6F8;
+  --lavender-text: #3D2A8A;
+  --yellow: #FFF0B8;
+  --yellow-text: #6B5000;
+  --sky: #C8E5F8;
+  --sky-text: #0D4A7A;
+  --pink: #F8D6E8;
+  --pink-text: #7A1A4A;
+  --r: 20px;
+  --rcard: 20px;
+  --rpill: 9999px;
+  --font: 'Nunito', sans-serif;
+  --body: 'Nunito Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 245, 240, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1.5px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logo span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #C8EDD8;
+  border-radius: 50%;
+  margin-left: 2px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--rpill);
+  padding: 4px;
+  gap: 2px;
+  list-style: none;
+}
+
+.nav-tab {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--rpill);
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nav-tab:hover { color: var(--text); }
+
+.nav-tab.active {
+  background: var(--text);
+  color: #fff;
+}
+
+/* ── PAGES ── */
+.page { display: none; padding: 2.5rem; min-height: calc(100vh - 73px); }
+.page.active { display: block; }
+
+/* ── WORK SUB-NAV ── */
+.sub-nav {
+  display: inline-flex;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--rpill);
+  padding: 4px;
+  gap: 2px;
+  margin-bottom: 2.5rem;
+}
+
+.sub-tab {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 1.1rem;
+  border-radius: var(--rpill);
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.sub-tab:hover { color: var(--text); }
+.sub-tab.active { background: var(--text); color: #fff; }
+
+.sub-page { display: none; }
+.sub-page.active { display: block; }
+
+/* ── HERO (Animation landing) ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  background: var(--card);
+  border-radius: var(--rcard);
+  border: 1.5px solid var(--border);
+  padding: 2.5rem 3rem;
+}
+
+.hero-text h1 {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.hero-text h1 em {
+  font-style: normal;
+  position: relative;
+}
+
+.hero-text h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--mint);
+  border-radius: 3px;
+  z-index: -1;
+}
+
+.hero-text p {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 36ch;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.25rem;
+}
+
+.tag {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  border-radius: var(--rpill);
+  letter-spacing: 0.01em;
+}
+
+.tag-mint { background: var(--mint); color: var(--mint-text); }
+.tag-peach { background: var(--peach); color: var(--peach-text); }
+.tag-lavender { background: var(--lavender); color: var(--lavender-text); }
+.tag-yellow { background: var(--yellow); color: var(--yellow-text); }
+.tag-sky { background: var(--sky); color: var(--sky-text); }
+.tag-pink { background: var(--pink); color: var(--pink-text); }
+
+.hero-visual {
+  aspect-ratio: 4/3;
+  background: var(--mint);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-family: var(--font);
+  font-weight: 700;
+  color: var(--mint-text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── GRID ── */
+.grid-label {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.work-card {
+  border-radius: var(--rcard);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  background: var(--card);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.work-card:hover { transform: translateY(-3px); border-color: #ccc; }
+
+.work-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.work-thumb.c-mint { background: var(--mint); color: var(--mint-text); }
+.work-thumb.c-peach { background: var(--peach); color: var(--peach-text); }
+.work-thumb.c-lavender { background: var(--lavender); color: var(--lavender-text); }
+.work-thumb.c-yellow { background: var(--yellow); color: var(--yellow-text); }
+.work-thumb.c-sky { background: var(--sky); color: var(--sky-text); }
+.work-thumb.c-pink { background: var(--pink); color: var(--pink-text); }
+
+.work-meta {
+  padding: 0.85rem 1rem;
+}
+
+.work-title {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+  color: var(--text);
+}
+
+.work-type {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ── PERSONAL PAGE ── */
+.personal-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.personal-avatar {
+  background: var(--lavender);
+  border-radius: var(--rcard);
+  border: 1.5px solid var(--border);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 3rem;
+  color: var(--lavender-text);
+}
+
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.info-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--rcard);
+  padding: 1.5rem 1.75rem;
+}
+
+.info-card h2 {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+/* ── CONTACT PAGE ── */
+.contact-layout {
+  max-width: 560px;
+}
+
+.contact-head {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.contact-sub {
+  color: var(--muted);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--rcard);
+  text-decoration: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.contact-link:hover { border-color: #aaa; transform: translateX(4px); }
+
+.contact-link-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contact-arrow {
+  font-size: 1rem;
+  color: var(--muted);
+  transition: transform 0.15s;
+}
+
+.contact-link:hover .contact-arrow { transform: translate(3px, -3px); }
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1.5px solid var(--border);
+  margin-top: 3rem;
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .site-nav { padding: 1rem 1.25rem; }
+  .page { padding: 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 1.5rem; }
+  .hero-visual { display: none; }
+  .works-grid { grid-template-columns: 1fr 1fr; }
+  .personal-layout { grid-template-columns: 1fr; }
+  .personal-avatar { aspect-ratio: 2/1; font-size: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card, .contact-link { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="#" class="logo" onclick="showPage('work'); return false;">emveg<span></span></a>
+  <ul class="nav-tabs">
+    <li class="nav-tab" onclick="showPage('personal')" id="tab-personal">Personal</li>
+    <li class="nav-tab active" onclick="showPage('work')" id="tab-work">Work</li>
+    <li class="nav-tab" onclick="showPage('contact')" id="tab-contact">Contact</li>
+  </ul>
+</nav>
+
+<!-- ── WORK PAGE ── -->
+<main class="page active" id="page-work">
+
+  <div class="sub-nav">
+    <div class="sub-tab active" onclick="showSub('animation')" id="sub-animation">Animation</div>
+    <div class="sub-tab" onclick="showSub('games')" id="sub-games">Games</div>
+  </div>
+
+  <!-- ANIMATION SUB-PAGE -->
+  <div class="sub-page active" id="subpage-animation">
+
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Moving things that <em>feel alive</em></h1>
+        <p>2D and 3D animation for games, film, and everything in between. Characters, loops, cutscenes — made with a lot of love and a little chaos.</p>
+        <div class="hero-tags">
+          <span class="tag tag-mint">2D animation</span>
+          <span class="tag tag-peach">3D animation</span>
+          <span class="tag tag-lavender">character rigging</span>
+          <span class="tag tag-yellow">motion design</span>
+        </div>
+      </div>
+      <div class="hero-visual">Your showreel here</div>
+    </div>
+
+    <p class="grid-label">Selected work</p>
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-thumb c-mint">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Project title</p>
+          <p class="work-type">Character animation · 2024</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-peach">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Project title</p>
+          <p class="work-type">2D loop · 2024</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-lavender">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Project title</p>
+          <p class="work-type">3D cutscene · 2023</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-yellow">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Project title</p>
+          <p class="work-type">Motion design · 2023</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-sky">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Project title</p>
+          <p class="work-type">Short film · 2023</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-pink">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Project title</p>
+          <p class="work-type">Title sequence · 2022</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GAMES SUB-PAGE -->
+  <div class="sub-page" id="subpage-games">
+
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Games with <em>personality</em></h1>
+        <p>Art, animation, and visual development for games. From pixel sprites to 3D characters — playful worlds built from scratch.</p>
+        <div class="hero-tags">
+          <span class="tag tag-sky">concept art</span>
+          <span class="tag tag-pink">character design</span>
+          <span class="tag tag-mint">environment art</span>
+          <span class="tag tag-yellow">pixel art</span>
+        </div>
+      </div>
+      <div class="hero-visual" style="background: var(--sky); color: var(--sky-text);">Your featured game here</div>
+    </div>
+
+    <p class="grid-label">Game projects</p>
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-thumb c-sky">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Game title</p>
+          <p class="work-type">Character design · 2024</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-pink">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Game title</p>
+          <p class="work-type">Environment art · 2024</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-yellow">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Game title</p>
+          <p class="work-type">Concept art · 2023</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-mint">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Game title</p>
+          <p class="work-type">Pixel art · 2023</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-lavender">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Game title</p>
+          <p class="work-type">UI design · 2022</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb c-peach">your image here</div>
+        <div class="work-meta">
+          <p class="work-title">Game title</p>
+          <p class="work-type">3D assets · 2022</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── PERSONAL PAGE ── -->
+<main class="page" id="page-personal">
+  <div class="personal-layout">
+    <div class="personal-avatar">:)</div>
+    <div class="personal-info">
+      <div class="info-card">
+        <h2>Hi, I'm emveg</h2>
+        <p>I'm a 2D/3D artist and animator based in Buenos Aires. I make things move, breathe, and feel like they have a soul — whether that's a character blinking for the first time or a little idle loop that makes you smile.</p>
+        <p style="margin-top: 0.75rem;">When I'm not animating I'm probably playing games, watching cartoons, or bothering my cat.</p>
+        <div class="skills-row">
+          <span class="tag tag-mint">Blender</span>
+          <span class="tag tag-peach">After Effects</span>
+          <span class="tag tag-lavender">Procreate</span>
+          <span class="tag tag-yellow">Spine2D</span>
+          <span class="tag tag-sky">Photoshop</span>
+          <span class="tag tag-pink">ZBrush</span>
+        </div>
+      </div>
+      <div class="info-card" style="background: var(--mint); border-color: #A8D8BA;">
+        <h2 style="color: var(--mint-text);">Currently open for work</h2>
+        <p style="color: var(--mint-text); opacity: 0.85;">Looking for animation and game art projects — freelance, contract, or full-time. Let's make something good.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── CONTACT PAGE ── -->
+<main class="page" id="page-contact">
+  <div class="contact-layout">
+    <h1 class="contact-head">Let's make something together</h1>
+    <p class="contact-sub">Drop me a message, follow my work, or just say hi.</p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com" class="contact-link">
+        <div class="contact-link-left">
+          <div class="contact-dot" style="background: var(--peach);"></div>
+          <span>Email</span>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://www.instagram.com/emveg/" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-left">
+          <div class="contact-dot" style="background: var(--pink);"></div>
+          <span>Instagram — @emveg</span>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://www.artstation.com/yourusername" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-left">
+          <div class="contact-dot" style="background: var(--sky);"></div>
+          <span>ArtStation</span>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-left">
+          <div class="contact-dot" style="background: var(--lavender);"></div>
+          <span>LinkedIn</span>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  © 2025 emveg — Buenos Aires
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+function showSub(name) {
+  document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('subpage-' + name).classList.add('active');
+  document.getElementById('sub-' + name).classList.add('active');
+}
+</script>
+</body>
+</html>
