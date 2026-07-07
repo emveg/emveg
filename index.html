@@ -3,676 +3,699 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>emveg — animation & games</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<title>Your Name | Illustration & Concept Art</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #F7F5F0;
-  --card: #FFFFFF;
-  --text: #1A1A18;
-  --muted: #888880;
-  --border: #E6E3DC;
-  --mint: #C8EDD8;
-  --mint-text: #1A5C38;
-  --peach: #FFD9C8;
-  --peach-text: #7A3018;
-  --lavender: #DDD6F8;
-  --lavender-text: #3D2A8A;
-  --yellow: #FFF0B8;
-  --yellow-text: #6B5000;
-  --sky: #C8E5F8;
-  --sky-text: #0D4A7A;
-  --pink: #F8D6E8;
-  --pink-text: #7A1A4A;
-  --r: 20px;
-  --rcard: 20px;
-  --rpill: 9999px;
-  --font: 'Nunito', sans-serif;
-  --body: 'Nunito Sans', sans-serif;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #888;
+  --border: #e8e8e8;
+  --nav-width: 220px;
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html, body { height: 100%; }
 
 body {
-  background: var(--bg);
+  font-family: var(--sans);
   color: var(--text);
-  font-family: var(--body);
-  font-size: 16px;
-  line-height: 1.6;
+  background: var(--bg);
+  display: flex;
   min-height: 100vh;
 }
 
-/* ── NAV ── */
-.site-nav {
+/* ── SIDE NAV ── */
+.sidenav {
+  width: var(--nav-width);
+  min-height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 2.5rem;
-  position: sticky;
-  top: 0;
+  flex-direction: column;
+  padding: 2.5rem 1.75rem;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
   z-index: 50;
-  background: rgba(247, 245, 240, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom: 1.5px solid var(--border);
+  overflow-y: auto;
 }
 
-.logo {
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: 1.35rem;
-  color: var(--text);
+.nav-logo {
+  margin-bottom: 2.5rem;
   text-decoration: none;
-  letter-spacing: -0.02em;
 }
 
-.logo span {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: #C8EDD8;
-  border-radius: 50%;
-  margin-left: 2px;
-  vertical-align: middle;
-  position: relative;
-  top: -2px;
+.nav-logo img {
+  width: 130px;
+  height: auto;
+  display: block;
 }
 
-.nav-tabs {
-  display: flex;
-  align-items: center;
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--rpill);
-  padding: 4px;
-  gap: 2px;
+.nav-logo-text {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.nav-logo-text span {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+}
+
+.nav-section {
+  margin-bottom: 1.75rem;
+}
+
+.nav-section-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  padding-left: 0.1rem;
+}
+
+.nav-section ul {
   list-style: none;
 }
 
-.nav-tab {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.875rem;
-  padding: 0.4rem 1rem;
-  border-radius: var(--rpill);
-  cursor: pointer;
+.nav-section ul li a {
+  display: block;
+  padding: 0.28rem 0.1rem;
+  font-size: 0.88rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+
+.nav-section ul li a:hover { color: var(--muted); }
+.nav-section ul li a.active { font-weight: 500; }
+
+.nav-section.sub ul li a {
+  font-size: 0.82rem;
   color: var(--muted);
-  transition: color 0.2s, background 0.2s;
-  user-select: none;
-  white-space: nowrap;
+  padding-left: 0.6rem;
 }
 
-.nav-tab:hover { color: var(--text); }
+.nav-section.sub ul li a:hover { color: var(--text); }
 
-.nav-tab.active {
-  background: var(--text);
-  color: #fff;
+.nav-social {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-/* ── PAGES ── */
-.page { display: none; padding: 2.5rem; min-height: calc(100vh - 73px); }
+.nav-social a {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-social a:hover { color: var(--text); }
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: var(--nav-width);
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* Pages */
+.page { display: none; }
 .page.active { display: block; }
 
-/* ── WORK SUB-NAV ── */
-.sub-nav {
-  display: inline-flex;
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--rpill);
-  padding: 4px;
-  gap: 2px;
-  margin-bottom: 2.5rem;
+/* ── PORTFOLIO (HOME) ── */
+.header-image {
+  width: 100%;
+  aspect-ratio: 16/5;
+  object-fit: cover;
+  display: block;
+  background: #e8e4de;
 }
 
-.sub-tab {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.35rem 1.1rem;
-  border-radius: var(--rpill);
-  cursor: pointer;
-  color: var(--muted);
-  transition: color 0.2s, background 0.2s;
-  user-select: none;
+.header-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16/5;
+  background: linear-gradient(135deg, #e8e4de 0%, #d4cfc8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
 }
 
-.sub-tab:hover { color: var(--text); }
-.sub-tab.active { background: var(--text); color: #fff; }
-
-.sub-page { display: none; }
-.sub-page.active { display: block; }
-
-/* ── HERO (Animation landing) ── */
-.hero {
+.portfolio-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 3rem;
-  background: var(--card);
-  border-radius: var(--rcard);
-  border: 1.5px solid var(--border);
-  padding: 2.5rem 3rem;
+  gap: 0;
 }
 
-.hero-text h1 {
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-}
-
-.hero-text h1 em {
-  font-style: normal;
+.portfolio-card {
   position: relative;
-}
-
-.hero-text h1 em::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: var(--mint);
-  border-radius: 3px;
-  z-index: -1;
-}
-
-.hero-text p {
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.7;
-  max-width: 36ch;
-}
-
-.hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 1.25rem;
-}
-
-.tag {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.75rem;
-  padding: 5px 12px;
-  border-radius: var(--rpill);
-  letter-spacing: 0.01em;
-}
-
-.tag-mint { background: var(--mint); color: var(--mint-text); }
-.tag-peach { background: var(--peach); color: var(--peach-text); }
-.tag-lavender { background: var(--lavender); color: var(--lavender-text); }
-.tag-yellow { background: var(--yellow); color: var(--yellow-text); }
-.tag-sky { background: var(--sky); color: var(--sky-text); }
-.tag-pink { background: var(--pink); color: var(--pink-text); }
-
-.hero-visual {
-  aspect-ratio: 4/3;
-  background: var(--mint);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-family: var(--font);
-  font-weight: 700;
-  color: var(--mint-text);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* ── GRID ── */
-.grid-label {
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-
-.works-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.work-card {
-  border-radius: var(--rcard);
-  border: 1.5px solid var(--border);
   overflow: hidden;
-  background: var(--card);
   cursor: pointer;
-  transition: transform 0.2s, border-color 0.2s;
-}
-
-.work-card:hover { transform: translateY(-3px); border-color: #ccc; }
-
-.work-thumb {
-  width: 100%;
-  aspect-ratio: 4/3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.work-thumb.c-mint { background: var(--mint); color: var(--mint-text); }
-.work-thumb.c-peach { background: var(--peach); color: var(--peach-text); }
-.work-thumb.c-lavender { background: var(--lavender); color: var(--lavender-text); }
-.work-thumb.c-yellow { background: var(--yellow); color: var(--yellow-text); }
-.work-thumb.c-sky { background: var(--sky); color: var(--sky-text); }
-.work-thumb.c-pink { background: var(--pink); color: var(--pink-text); }
-
-.work-meta {
-  padding: 0.85rem 1rem;
-}
-
-.work-title {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 2px;
-  color: var(--text);
-}
-
-.work-type {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-/* ── PERSONAL PAGE ── */
-.personal-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-.personal-avatar {
-  background: var(--lavender);
-  border-radius: var(--rcard);
-  border: 1.5px solid var(--border);
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: 3rem;
-  color: var(--lavender-text);
-}
-
-.personal-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.info-card {
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--rcard);
-  padding: 1.5rem 1.75rem;
-}
-
-.info-card h2 {
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-.info-card p {
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.75;
-}
-
-.skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 1rem;
-}
-
-/* ── CONTACT PAGE ── */
-.contact-layout {
-  max-width: 560px;
-}
-
-.contact-head {
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 0.75rem;
-}
-
-.contact-sub {
-  color: var(--muted);
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.contact-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--rcard);
   text-decoration: none;
-  color: var(--text);
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: border-color 0.2s, transform 0.15s;
+  display: block;
 }
 
-.contact-link:hover { border-color: #aaa; transform: translateX(4px); }
+.portfolio-card::after {
+  content: '';
+  display: block;
+  padding-bottom: 75%;
+}
 
-.contact-link-left {
+.portfolio-card-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.portfolio-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.3s;
+  display: block;
+}
+
+.portfolio-card-placeholder {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: transform 0.5s;
 }
 
-.contact-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.portfolio-card:nth-child(1) .portfolio-card-placeholder { background: #8B7355; }
+.portfolio-card:nth-child(2) .portfolio-card-placeholder { background: #5B6E7A; }
+.portfolio-card:nth-child(3) .portfolio-card-placeholder { background: #6B7A5B; }
+.portfolio-card:nth-child(4) .portfolio-card-placeholder { background: #7A5B6E; }
+
+.portfolio-card-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2rem 1.5rem 1.25rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+  color: white;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  transition: opacity 0.3s;
 }
 
-.contact-arrow {
-  font-size: 1rem;
-  color: var(--muted);
-  transition: transform 0.15s;
+.portfolio-card:hover .portfolio-card-img,
+.portfolio-card:hover .portfolio-card-placeholder {
+  transform: scale(1.03);
 }
 
-.contact-link:hover .contact-arrow { transform: translate(3px, -3px); }
-
-/* ── FOOTER ── */
+/* ── FOOTER (below grid) ── */
 .site-footer {
-  text-align: center;
-  padding: 2rem;
+  padding: 3rem 3rem 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.footer-title {
   font-size: 0.8rem;
   color: var(--muted);
-  border-top: 1.5px solid var(--border);
-  margin-top: 3rem;
-  font-family: var(--font);
-  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 700px) {
-  .site-nav { padding: 1rem 1.25rem; }
-  .page { padding: 1.5rem; }
-  .hero { grid-template-columns: 1fr; padding: 1.5rem; }
-  .hero-visual { display: none; }
-  .works-grid { grid-template-columns: 1fr 1fr; }
-  .personal-layout { grid-template-columns: 1fr; }
-  .personal-avatar { aspect-ratio: 2/1; font-size: 2rem; }
+.footer-email a {
+  font-size: 0.85rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .work-card, .contact-link { transition: none; }
+.footer-email a:hover { color: var(--muted); }
+
+.footer-social-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-social a {
+  font-size: 0.82rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-social a:hover { color: var(--muted); }
+
+/* ── INNER PAGES (Concept Art, Illustration, etc.) ── */
+.inner-page {
+  padding: 3rem;
+}
+
+.inner-page h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.inner-page .page-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  max-width: 48ch;
+  line-height: 1.6;
+}
+
+.masonry {
+  columns: 2;
+  column-gap: 1rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.masonry-item img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+
+.masonry-placeholder {
+  width: 100%;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+}
+
+/* ── ABOUT PAGE ── */
+.about-page {
+  padding: 3rem;
+  max-width: 680px;
+}
+
+.about-page h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 340px;
+  margin-bottom: 2rem;
+  border-radius: 2px;
+  display: block;
+  background: #e8e4de;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+.about-photo-placeholder {
+  width: 200px;
+  aspect-ratio: 3/4;
+  background: #e8e4de;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-page p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.about-page .about-contact {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.about-page .about-contact a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.about-page .about-contact a:hover { text-decoration: underline; }
+
+/* ── LINKS PAGE ── */
+.links-page {
+  padding: 3rem;
+  max-width: 500px;
+}
+
+.links-page h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.links-list li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.88rem;
+  transition: color 0.15s;
+}
+
+.links-list li a:hover { color: var(--muted); }
+
+.links-list li a span { font-size: 0.9rem; color: var(--muted); }
+
+/* ── MOBILE NAV ── */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-logo {
+  font-family: var(--serif);
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.mobile-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+}
+
+.mobile-nav-open .sidenav {
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+  }
+  .main { margin-left: 0; padding-top: 56px; }
+  .mobile-header { display: flex; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .masonry { columns: 1; }
+  .inner-page, .about-page, .links-page { padding: 2rem 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <a href="#" class="logo" onclick="showPage('work'); return false;">emveg<span></span></a>
-  <ul class="nav-tabs">
-    <li class="nav-tab" onclick="showPage('personal')" id="tab-personal">Personal</li>
-    <li class="nav-tab active" onclick="showPage('work')" id="tab-work">Work</li>
-    <li class="nav-tab" onclick="showPage('contact')" id="tab-contact">Contact</li>
-  </ul>
+<!-- MOBILE HEADER -->
+<div class="mobile-header">
+  <a href="#" class="mobile-logo" onclick="showPage('portfolio'); return false;">Your Name</a>
+  <button class="mobile-toggle" onclick="document.body.classList.toggle('mobile-nav-open')">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- SIDE NAV -->
+<nav class="sidenav">
+  <a href="#" class="nav-logo" onclick="showPage('portfolio'); return false;">
+    <!-- Replace with your logo image: <img src="images/logo.png" alt="Your Name"> -->
+    <div class="nav-logo-text">Your Name<span>Illustration & Concept Art</span></div>
+  </a>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Portfolio</div>
+    <ul>
+      <li><a href="#" onclick="showPage('portfolio'); return false;" id="nav-portfolio">Portfolio</a></li>
+      <li><a href="#" onclick="showPage('concept-art'); return false;" id="nav-concept-art">Concept Art</a></li>
+      <li><a href="#" onclick="showPage('illustration'); return false;" id="nav-illustration">Illustration</a></li>
+      <li><a href="#" onclick="showPage('plein-air'); return false;" id="nav-plein-air">Plein Air</a></li>
+      <li><a href="#" onclick="showPage('sketchbook'); return false;" id="nav-sketchbook">Sketchbook</a></li>
+    </ul>
+  </div>
+
+  <div class="nav-section sub">
+    <div class="nav-section-label">Concept Art</div>
+    <ul>
+      <li><a href="#" onclick="showPage('concept-art'); return false;">All Concept Art</a></li>
+      <li><a href="#" onclick="showPage('concept-art'); return false;">Project One</a></li>
+      <li><a href="#" onclick="showPage('concept-art'); return false;">Project Two</a></li>
+      <li><a href="#" onclick="showPage('concept-art'); return false;">Project Three</a></li>
+    </ul>
+  </div>
+
+  <div class="nav-section">
+    <ul>
+      <li><a href="#" onclick="showPage('about'); return false;" id="nav-about">About</a></li>
+      <li><a href="#" onclick="showPage('links'); return false;" id="nav-links">Links</a></li>
+    </ul>
+  </div>
+
+  <div class="nav-social">
+    <a href="https://instagram.com/yourusername" target="_blank">Instagram</a>
+    <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
+    <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
+    <a href="https://tumblr.com/yourusername" target="_blank">Tumblr</a>
+  </div>
 </nav>
 
-<!-- ── WORK PAGE ── -->
-<main class="page active" id="page-work">
+<!-- MAIN -->
+<main class="main">
 
-  <div class="sub-nav">
-    <div class="sub-tab active" onclick="showSub('animation')" id="sub-animation">Animation</div>
-    <div class="sub-tab" onclick="showSub('games')" id="sub-games">Games</div>
+  <!-- PORTFOLIO PAGE -->
+  <div class="page active" id="page-portfolio">
+    <!-- Replace with your own full-width header image -->
+    <div class="header-image-placeholder">Your header image here — replace with &lt;img src="images/header.jpg"&gt;</div>
+
+    <div class="portfolio-grid">
+      <a class="portfolio-card" href="#" onclick="showPage('concept-art'); return false;">
+        <div class="portfolio-card-inner">
+          <!-- <img class="portfolio-card-img" src="images/concept-art-thumb.jpg" alt="Concept Art"> -->
+          <div class="portfolio-card-placeholder">Your image here</div>
+          <div class="portfolio-card-label">Concept Art</div>
+        </div>
+      </a>
+      <a class="portfolio-card" href="#" onclick="showPage('illustration'); return false;">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-card-placeholder">Your image here</div>
+          <div class="portfolio-card-label">Illustration</div>
+        </div>
+      </a>
+      <a class="portfolio-card" href="#" onclick="showPage('plein-air'); return false;">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-card-placeholder">Your image here</div>
+          <div class="portfolio-card-label">Plein Air</div>
+        </div>
+      </a>
+      <a class="portfolio-card" href="#" onclick="showPage('sketchbook'); return false;">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-card-placeholder">Your image here</div>
+          <div class="portfolio-card-label">Sketchbook</div>
+        </div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-name">Your Name</p>
+      <p class="footer-title">Art Direction & Concept Art</p>
+      <p class="footer-email"><a href="mailto:your@email.com">your@email.com</a></p>
+      <p class="footer-social-label">find me elsewhere:</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/yourusername" target="_blank">Instagram</a>
+        <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
+        <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
+        <a href="https://tumblr.com/yourusername" target="_blank">Tumblr</a>
+      </div>
+    </footer>
   </div>
 
-  <!-- ANIMATION SUB-PAGE -->
-  <div class="sub-page active" id="subpage-animation">
-
-    <div class="hero">
-      <div class="hero-text">
-        <h1>Moving things that <em>feel alive</em></h1>
-        <p>2D and 3D animation for games, film, and everything in between. Characters, loops, cutscenes — made with a lot of love and a little chaos.</p>
-        <div class="hero-tags">
-          <span class="tag tag-mint">2D animation</span>
-          <span class="tag tag-peach">3D animation</span>
-          <span class="tag tag-lavender">character rigging</span>
-          <span class="tag tag-yellow">motion design</span>
-        </div>
-      </div>
-      <div class="hero-visual">Your showreel here</div>
-    </div>
-
-    <p class="grid-label">Selected work</p>
-    <div class="works-grid">
-      <div class="work-card">
-        <div class="work-thumb c-mint">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Project title</p>
-          <p class="work-type">Character animation · 2024</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-peach">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Project title</p>
-          <p class="work-type">2D loop · 2024</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-lavender">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Project title</p>
-          <p class="work-type">3D cutscene · 2023</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-yellow">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Project title</p>
-          <p class="work-type">Motion design · 2023</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-sky">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Project title</p>
-          <p class="work-type">Short film · 2023</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-pink">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Project title</p>
-          <p class="work-type">Title sequence · 2022</p>
-        </div>
+  <!-- CONCEPT ART PAGE -->
+  <div class="page" id="page-concept-art">
+    <div class="inner-page">
+      <h1>Concept Art</h1>
+      <p class="page-desc">Your description here — the kind of work you do, the projects you've worked on, what drives your process.</p>
+      <div class="masonry">
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:320px; background:#e8e4de;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:240px; background:#dde4e8;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:280px; background:#e4e8dd;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:360px; background:#e8dde4;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#dde8e4;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e4dde8;">Your image here</div></div>
       </div>
     </div>
-
   </div>
 
-  <!-- GAMES SUB-PAGE -->
-  <div class="sub-page" id="subpage-games">
-
-    <div class="hero">
-      <div class="hero-text">
-        <h1>Games with <em>personality</em></h1>
-        <p>Art, animation, and visual development for games. From pixel sprites to 3D characters — playful worlds built from scratch.</p>
-        <div class="hero-tags">
-          <span class="tag tag-sky">concept art</span>
-          <span class="tag tag-pink">character design</span>
-          <span class="tag tag-mint">environment art</span>
-          <span class="tag tag-yellow">pixel art</span>
-        </div>
-      </div>
-      <div class="hero-visual" style="background: var(--sky); color: var(--sky-text);">Your featured game here</div>
-    </div>
-
-    <p class="grid-label">Game projects</p>
-    <div class="works-grid">
-      <div class="work-card">
-        <div class="work-thumb c-sky">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Game title</p>
-          <p class="work-type">Character design · 2024</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-pink">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Game title</p>
-          <p class="work-type">Environment art · 2024</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-yellow">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Game title</p>
-          <p class="work-type">Concept art · 2023</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-mint">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Game title</p>
-          <p class="work-type">Pixel art · 2023</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-lavender">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Game title</p>
-          <p class="work-type">UI design · 2022</p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-thumb c-peach">your image here</div>
-        <div class="work-meta">
-          <p class="work-title">Game title</p>
-          <p class="work-type">3D assets · 2022</p>
-        </div>
+  <!-- ILLUSTRATION PAGE -->
+  <div class="page" id="page-illustration">
+    <div class="inner-page">
+      <h1>Illustration</h1>
+      <p class="page-desc">Editorial, personal, and commercial illustration work.</p>
+      <div class="masonry">
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e8dde4;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#e8e4de;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:340px; background:#dde8e4;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:280px; background:#dde4e8;">Your image here</div></div>
       </div>
     </div>
-
   </div>
+
+  <!-- PLEIN AIR PAGE -->
+  <div class="page" id="page-plein-air">
+    <div class="inner-page">
+      <h1>Plein Air</h1>
+      <p class="page-desc">Paintings made outdoors, on location.</p>
+      <div class="masonry">
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:280px; background:#e4e8dd;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:320px; background:#dde4e8;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#e8e4de;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e4dde8;">Your image here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKETCHBOOK PAGE -->
+  <div class="page" id="page-sketchbook">
+    <div class="inner-page">
+      <h1>Sketchbook</h1>
+      <p class="page-desc">Studies, experiments, and work in progress.</p>
+      <div class="masonry">
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#e8dde4;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e4e8dd;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:320px; background:#dde8e4;">Your image here</div></div>
+        <div class="masonry-item"><div class="masonry-placeholder" style="height:240px; background:#e8e4de;">Your image here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div class="page" id="page-about">
+    <div class="about-page">
+      <h1>About</h1>
+      <!-- Replace with your photo: <img class="about-photo" src="images/photo.jpg" alt="Your Name"> -->
+      <div class="about-photo-placeholder">Your photo</div>
+      <p>Write a short bio here — who you are, what you do, where you're based, what you're working on right now.</p>
+      <p>A second paragraph about your background, your interests, the kind of work that excites you.</p>
+      <p>Keep it human and personal — people hire artists they connect with.</p>
+      <div class="about-contact">
+        <p>Get in touch: <a href="mailto:your@email.com">your@email.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LINKS PAGE -->
+  <div class="page" id="page-links">
+    <div class="links-page">
+      <h1>Links</h1>
+      <ul class="links-list">
+        <li><a href="https://instagram.com/yourusername" target="_blank">Instagram <span>↗</span></a></li>
+        <li><a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky <span>↗</span></a></li>
+        <li><a href="https://twitter.com/yourusername" target="_blank">Twitter / X <span>↗</span></a></li>
+        <li><a href="https://tumblr.com/yourusername" target="_blank">Tumblr <span>↗</span></a></li>
+        <li><a href="https://artstation.com/yourusername" target="_blank">ArtStation <span>↗</span></a></li>
+      </ul>
+    </div>
+  </div>
+
 </main>
-
-<!-- ── PERSONAL PAGE ── -->
-<main class="page" id="page-personal">
-  <div class="personal-layout">
-    <div class="personal-avatar">:)</div>
-    <div class="personal-info">
-      <div class="info-card">
-        <h2>Hi, I'm emveg</h2>
-        <p>I'm a 2D/3D artist and animator based in Buenos Aires. I make things move, breathe, and feel like they have a soul — whether that's a character blinking for the first time or a little idle loop that makes you smile.</p>
-        <p style="margin-top: 0.75rem;">When I'm not animating I'm probably playing games, watching cartoons, or bothering my cat.</p>
-        <div class="skills-row">
-          <span class="tag tag-mint">Blender</span>
-          <span class="tag tag-peach">After Effects</span>
-          <span class="tag tag-lavender">Procreate</span>
-          <span class="tag tag-yellow">Spine2D</span>
-          <span class="tag tag-sky">Photoshop</span>
-          <span class="tag tag-pink">ZBrush</span>
-        </div>
-      </div>
-      <div class="info-card" style="background: var(--mint); border-color: #A8D8BA;">
-        <h2 style="color: var(--mint-text);">Currently open for work</h2>
-        <p style="color: var(--mint-text); opacity: 0.85;">Looking for animation and game art projects — freelance, contract, or full-time. Let's make something good.</p>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- ── CONTACT PAGE ── -->
-<main class="page" id="page-contact">
-  <div class="contact-layout">
-    <h1 class="contact-head">Let's make something together</h1>
-    <p class="contact-sub">Drop me a message, follow my work, or just say hi.</p>
-    <div class="contact-links">
-      <a href="mailto:your@email.com" class="contact-link">
-        <div class="contact-link-left">
-          <div class="contact-dot" style="background: var(--peach);"></div>
-          <span>Email</span>
-        </div>
-        <span class="contact-arrow">↗</span>
-      </a>
-      <a href="https://www.instagram.com/emveg/" target="_blank" rel="noopener" class="contact-link">
-        <div class="contact-link-left">
-          <div class="contact-dot" style="background: var(--pink);"></div>
-          <span>Instagram — @emveg</span>
-        </div>
-        <span class="contact-arrow">↗</span>
-      </a>
-      <a href="https://www.artstation.com/yourusername" target="_blank" rel="noopener" class="contact-link">
-        <div class="contact-link-left">
-          <div class="contact-dot" style="background: var(--sky);"></div>
-          <span>ArtStation</span>
-        </div>
-        <span class="contact-arrow">↗</span>
-      </a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="contact-link">
-        <div class="contact-link-left">
-          <div class="contact-dot" style="background: var(--lavender);"></div>
-          <span>LinkedIn</span>
-        </div>
-        <span class="contact-arrow">↗</span>
-      </a>
-    </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  © 2025 emveg — Buenos Aires
-</footer>
 
 <script>
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  document.getElementById('tab-' + name).classList.add('active');
+  var navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  document.body.classList.remove('mobile-nav-open');
+  window.scrollTo(0, 0);
 }
 
-function showSub(name) {
-  document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('subpage-' + name).classList.add('active');
-  document.getElementById('sub-' + name).classList.add('active');
-}
+// Close mobile nav on outside click
+document.addEventListener('click', function(e) {
+  if (document.body.classList.contains('mobile-nav-open')) {
+    if (!e.target.closest('.sidenav') && !e.target.closest('.mobile-toggle')) {
+      document.body.classList.remove('mobile-nav-open');
+    }
+  }
+});
 </script>
 </body>
 </html>
