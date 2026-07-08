@@ -3,699 +3,1265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name | Illustration & Concept Art</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<title>Your Name — Art & Illustration</title>
+<meta name="description" content="Artist portfolio — personal illustration, animation, and mobile games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<style>
+/* ══════════════════════════════════════════
+   TOKENS & RESET
+══════════════════════════════════════════ */
 :root {
-  --bg: #ffffff;
-  --text: #1a1a1a;
-  --muted: #888;
-  --border: #e8e8e8;
-  --nav-width: 220px;
-  --serif: 'EB Garamond', Georgia, serif;
-  --sans: 'Inter', system-ui, sans-serif;
+  --bg:         #F5F0E8;
+  --bg-card:    #EDE7D9;
+  --bg-deep:    #E6DECF;
+  --tan:        #C4A882;
+  --tan-dark:   #A8886A;
+  --cocoa:      #6B5744;
+  --cocoa-dark: #4A3A2C;
+  --clay:       #9C8070;
+  --clay-light: #BFA898;
+  --ink:        #3D2B1F;
+
+  --serif: 'Lora', Georgia, serif;
+  --round: 'Nunito', system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 18px rgba(80,50,30,0.10);
+  --shadow-lift: 0 10px 32px rgba(80,50,30,0.16);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --transition: 0.28s cubic-bezier(0.34,1.2,0.64,1);
 }
 
-html, body { height: 100%; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  font-family: var(--sans);
-  color: var(--text);
   background: var(--bg);
-  display: flex;
+  color: var(--cocoa);
+  font-family: var(--round);
+  font-weight: 400;
+  line-height: 1.65;
   min-height: 100vh;
 }
 
-/* ── SIDE NAV ── */
-.sidenav {
-  width: var(--nav-width);
-  min-height: 100vh;
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* ══════════════════════════════════════════
+   HEADER / NAV
+══════════════════════════════════════════ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1.5px solid var(--bg-deep);
+  padding: 0 2rem;
+}
+
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 1rem;
+}
+
+.site-logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--cocoa-dark);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.site-logo span {
+  font-style: normal;
+  font-size: 0.65rem;
+  font-family: var(--round);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay);
+  display: block;
+  margin-top: -3px;
+}
+
+/* Desktop nav */
+.main-nav { display: flex; align-items: center; gap: 0.25rem; }
+
+.nav-item {
+  position: relative;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  font-family: var(--round);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--clay);
+  border-radius: 20px;
+  transition: background 0.18s, color 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: var(--bg-card);
+  color: var(--cocoa-dark);
+}
+
+.nav-btn .caret {
+  font-size: 0.6rem;
+  transition: transform 0.2s;
+}
+
+.nav-item:hover .caret { transform: rotate(180deg); }
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lift);
+  min-width: 150px;
+  padding: 0.4rem;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 50;
+}
+
+.nav-item:hover .nav-dropdown { display: flex; }
+
+.nav-dropdown button {
+  background: none;
+  border: none;
+  padding: 0.5rem 0.85rem;
+  font-family: var(--round);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--clay);
+  border-radius: 6px;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-dropdown button:hover {
+  background: var(--bg-deep);
+  color: var(--cocoa-dark);
+}
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cocoa);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile drawer */
+.mobile-drawer {
+  display: none;
   position: fixed;
-  top: 0; left: 0;
+  inset: 0;
+  z-index: 200;
+}
+
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(60,40,20,0.35);
+}
+
+.drawer-panel {
+  position: absolute;
+  top: 0; right: 0;
+  width: min(280px, 85vw);
+  height: 100%;
+  background: var(--bg);
+  border-left: 1.5px solid var(--bg-deep);
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem 1.75rem;
-  border-right: 1px solid var(--border);
-  background: var(--bg);
-  z-index: 50;
+  gap: 0.25rem;
   overflow-y: auto;
 }
 
-.nav-logo {
-  margin-bottom: 2.5rem;
-  text-decoration: none;
+.drawer-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--clay);
+  margin-bottom: 1rem;
+  line-height: 1;
 }
 
-.nav-logo img {
-  width: 130px;
-  height: auto;
-  display: block;
+.drawer-btn {
+  background: none;
+  border: none;
+  padding: 0.7rem 0.5rem;
+  font-family: var(--round);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cocoa);
+  text-align: left;
+  border-bottom: 1px solid var(--bg-deep);
 }
 
-.nav-logo-text {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  color: var(--text);
-  line-height: 1.2;
-}
-
-.nav-logo-text span {
-  display: block;
-  font-family: var(--sans);
-  font-size: 0.7rem;
+.drawer-sub {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  margin-top: 3px;
+  color: var(--clay);
+  border-bottom: none;
 }
 
-.nav-section {
-  margin-bottom: 1.75rem;
-}
+.mobile-drawer.open { display: block; }
 
-.nav-section-label {
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-  padding-left: 0.1rem;
-}
-
-.nav-section ul {
-  list-style: none;
-}
-
-.nav-section ul li a {
-  display: block;
-  padding: 0.28rem 0.1rem;
-  font-size: 0.88rem;
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.15s;
-  line-height: 1.4;
-}
-
-.nav-section ul li a:hover { color: var(--muted); }
-.nav-section ul li a.active { font-weight: 500; }
-
-.nav-section.sub ul li a {
-  font-size: 0.82rem;
-  color: var(--muted);
-  padding-left: 0.6rem;
-}
-
-.nav-section.sub ul li a:hover { color: var(--text); }
-
-.nav-social {
-  margin-top: auto;
-  padding-top: 2rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.nav-social a {
-  font-size: 0.72rem;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.nav-social a:hover { color: var(--text); }
-
-/* ── MAIN CONTENT ── */
-.main {
-  margin-left: var(--nav-width);
-  flex: 1;
-  min-height: 100vh;
-}
-
-/* Pages */
+/* ══════════════════════════════════════════
+   PAGE SYSTEM
+══════════════════════════════════════════ */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── PORTFOLIO (HOME) ── */
-.header-image {
-  width: 100%;
-  aspect-ratio: 16/5;
-  object-fit: cover;
-  display: block;
-  background: #e8e4de;
+/* ══════════════════════════════════════════
+   SHARED LAYOUT HELPERS
+══════════════════════════════════════════ */
+.content-well {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 5rem;
 }
 
-.header-image-placeholder {
+.page-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-intro h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--cocoa-dark);
+  margin-bottom: 0.5rem;
+}
+
+.page-intro p {
+  color: var(--clay);
+  font-size: 0.97rem;
+  max-width: 48ch;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* decorative wiggle divider (inline SVG as background) */
+.wiggle {
   width: 100%;
-  aspect-ratio: 16/5;
-  background: linear-gradient(135deg, #e8e4de 0%, #d4cfc8 100%);
+  max-width: 300px;
+  height: 12px;
+  margin: 0.75rem auto 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='12' viewBox='0 0 300 12'%3E%3Cpath d='M0 6 Q15 1 30 6 Q45 11 60 6 Q75 1 90 6 Q105 11 120 6 Q135 1 150 6 Q165 11 180 6 Q195 1 210 6 Q225 11 240 6 Q255 1 270 6 Q285 11 300 6' fill='none' stroke='%23C4A882' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.7;
+}
+
+/* small dot accent used inline */
+.dot-accent {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tan);
+  margin: 0 6px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* ══════════════════════════════════════════
+   GALLERY GRID + CARDS
+══════════════════════════════════════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Each card gets a subtle random tilt via nth-child */
+.art-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border: 1.5px solid var(--bg-deep);
+  /* tilt via rotation — like pinned art on a studio wall */
+  transform: rotate(-0.8deg);
+}
+
+.art-card:nth-child(2n)   { transform: rotate(0.6deg); }
+.art-card:nth-child(3n)   { transform: rotate(-0.4deg); }
+.art-card:nth-child(4n)   { transform: rotate(1deg); }
+.art-card:nth-child(5n)   { transform: rotate(-1deg); }
+
+.art-card:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-lift);
+  z-index: 2;
+}
+
+.art-card-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder thumb — warm colored block */
+.art-card-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.art-card-caption {
+  padding: 0.75rem 0.9rem 0.85rem;
+}
+
+.art-card-caption h3 {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  color: var(--cocoa-dark);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.art-card-caption p {
+  font-size: 0.75rem;
+  color: var(--clay-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* Placeholder color palette */
+.pc1  { background: #D4C4B0; color: #8B7355; }
+.pc2  { background: #C8D4C0; color: #6B8060; }
+.pc3  { background: #D4C8C0; color: #8B6B60; }
+.pc4  { background: #C0CCD4; color: #607080; }
+.pc5  { background: #D4C0C8; color: #806070; }
+.pc6  { background: #C8D0C0; color: #708060; }
+.pc7  { background: #D8C8A8; color: #887048; }
+.pc8  { background: #C0D4C8; color: #608070; }
+.pc9  { background: #D0C8D4; color: #706880; }
+.pc10 { background: #DCC8B0; color: #8A6840; }
+.pc11 { background: #C4D4BC; color: #648060; }
+.pc12 { background: #D8C0BC; color: #886060; }
+
+/* ══════════════════════════════════════════
+   PERSONAL ART PAGE
+══════════════════════════════════════════ */
+#page-personal .page-intro p::before {
+  content: '✦ ';
+  color: var(--tan);
+  font-size: 0.7em;
+}
+
+/* ══════════════════════════════════════════
+   WORK PAGE
+══════════════════════════════════════════ */
+.work-hero {
+  background: var(--bg-card);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.work-hero h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  color: var(--cocoa-dark);
+  margin-bottom: 0.6rem;
+}
+
+.work-hero p {
+  color: var(--clay);
+  max-width: 46ch;
+  margin: 0 auto 1.75rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* Sub-nav tabs */
+.sub-tabs {
+  display: inline-flex;
+  background: var(--bg);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: 50px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.sub-tab {
+  background: none;
+  border: none;
+  padding: 0.45rem 1.3rem;
+  border-radius: 50px;
+  font-family: var(--round);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--clay);
+  transition: background 0.2s, color 0.2s;
+}
+
+.sub-tab.active {
+  background: var(--cocoa);
+  color: var(--bg);
+}
+
+.sub-page { display: none; }
+.sub-page.active { display: block; }
+
+.sub-page-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.sub-page-heading h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--cocoa-dark);
+}
+
+.sub-page-heading p {
+  font-size: 0.85rem;
+  color: var(--clay);
+  margin-top: 3px;
+}
+
+/* Project cards (wider, landscape) for Work sub-pages */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--bg-deep);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lift);
+}
+
+.project-card-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.project-card-body h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--cocoa-dark);
+  margin-bottom: 4px;
+}
+
+.project-card-body p {
+  font-size: 0.82rem;
+  color: var(--clay);
+  line-height: 1.6;
+}
+
+.project-tag {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 3px 10px;
+  background: var(--bg-deep);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--clay);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   CONTACT PAGE
+══════════════════════════════════════════ */
+.contact-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 5rem;
+}
+
+.contact-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-card h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 2rem;
+  color: var(--cocoa-dark);
+  margin-bottom: 0.6rem;
+}
+
+.contact-card p {
+  color: var(--clay);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--cocoa);
+  color: var(--bg);
+  padding: 0.7rem 1.6rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: background 0.2s, transform 0.18s;
+  text-decoration: none;
+}
+
+.contact-email:hover {
+  background: var(--cocoa-dark);
+  transform: translateY(-2px);
+}
+
+.social-row {
+  background: var(--bg-card);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: 50px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--clay);
+  transition: border-color 0.18s, color 0.18s, transform 0.18s;
+}
+
+.social-link:hover {
+  border-color: var(--tan);
+  color: var(--cocoa-dark);
+  transform: translateY(-2px);
+}
+
+.contact-note {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--clay-light);
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.site-footer {
+  background: var(--bg-card);
+  border-top: 1.5px solid var(--bg-deep);
+  text-align: center;
+  padding: 2rem 2rem;
+  font-size: 0.78rem;
+  color: var(--clay-light);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.site-footer em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--clay);
+  font-size: 0.88rem;
+}
+
+/* ══════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════ */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(40,25,12,0.88);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox-content {
+  position: relative;
+  max-width: 860px;
+  width: 100%;
+  background: var(--bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  animation: lb-in 0.28s cubic-bezier(0.34,1.2,0.64,1);
+}
+
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-img-wrap {
+  width: 100%;
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  min-height: 280px;
+}
+
+.lightbox-img-wrap img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lb-placeholder {
+  width: 100%;
+  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #aaa;
 }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
+.lightbox-caption {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--bg-deep);
 }
 
-.portfolio-card {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
-}
-
-.portfolio-card::after {
-  content: '';
-  display: block;
-  padding-bottom: 75%;
-}
-
-.portfolio-card-inner {
-  position: absolute;
-  inset: 0;
-}
-
-.portfolio-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.3s;
-  display: block;
-}
-
-.portfolio-card-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  transition: transform 0.5s;
-}
-
-.portfolio-card:nth-child(1) .portfolio-card-placeholder { background: #8B7355; }
-.portfolio-card:nth-child(2) .portfolio-card-placeholder { background: #5B6E7A; }
-.portfolio-card:nth-child(3) .portfolio-card-placeholder { background: #6B7A5B; }
-.portfolio-card:nth-child(4) .portfolio-card-placeholder { background: #7A5B6E; }
-
-.portfolio-card-label {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 2rem 1.5rem 1.25rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
-  color: white;
+.lightbox-caption h3 {
   font-family: var(--serif);
-  font-size: 1.3rem;
-  font-style: italic;
-  letter-spacing: 0.01em;
-  transition: opacity 0.3s;
+  font-size: 1.05rem;
+  color: var(--cocoa-dark);
 }
 
-.portfolio-card:hover .portfolio-card-img,
-.portfolio-card:hover .portfolio-card-placeholder {
-  transform: scale(1.03);
-}
-
-/* ── FOOTER (below grid) ── */
-.site-footer {
-  padding: 3rem 3rem 2.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.footer-name {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  margin-bottom: 0.2rem;
-}
-
-.footer-title {
+.lightbox-caption p {
   font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
+  color: var(--clay);
+  margin-top: 2px;
 }
 
-.footer-email a {
-  font-size: 0.85rem;
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.footer-email a:hover { color: var(--muted); }
-
-.footer-social-label {
-  font-size: 0.72rem;
-  color: var(--muted);
-  margin-top: 1.25rem;
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.04em;
-}
-
-.footer-social {
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-}
-
-.footer-social a {
-  font-size: 0.82rem;
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.footer-social a:hover { color: var(--muted); }
-
-/* ── INNER PAGES (Concept Art, Illustration, etc.) ── */
-.inner-page {
-  padding: 3rem;
-}
-
-.inner-page h1 {
-  font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 400;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-}
-
-.inner-page .page-desc {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-  max-width: 48ch;
-  line-height: 1.6;
-}
-
-.masonry {
-  columns: 2;
-  column-gap: 1rem;
-}
-
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.masonry-item img {
-  width: 100%;
-  display: block;
-  border-radius: 2px;
-}
-
-.masonry-placeholder {
-  width: 100%;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #bbb;
-}
-
-/* ── ABOUT PAGE ── */
-.about-page {
-  padding: 3rem;
-  max-width: 680px;
-}
-
-.about-page h1 {
-  font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 400;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-
-.about-photo {
-  width: 100%;
-  max-width: 340px;
-  margin-bottom: 2rem;
-  border-radius: 2px;
-  display: block;
-  background: #e8e4de;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-}
-
-.about-photo-placeholder {
-  width: 200px;
-  aspect-ratio: 3/4;
-  background: #e8e4de;
-  border-radius: 2px;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  color: #aaa;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.about-page p {
-  font-size: 0.92rem;
-  line-height: 1.8;
-  color: #444;
-  margin-bottom: 1rem;
-}
-
-.about-page .about-contact {
-  margin-top: 2rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.about-page .about-contact a {
-  color: var(--text);
-  text-decoration: none;
-}
-
-.about-page .about-contact a:hover { text-decoration: underline; }
-
-/* ── LINKS PAGE ── */
-.links-page {
-  padding: 3rem;
-  max-width: 500px;
-}
-
-.links-page h1 {
-  font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 400;
-  font-style: italic;
-  margin-bottom: 2rem;
-}
-
-.links-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.links-list li a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--text);
-  font-size: 0.88rem;
-  transition: color 0.15s;
-}
-
-.links-list li a:hover { color: var(--muted); }
-
-.links-list li a span { font-size: 0.9rem; color: var(--muted); }
-
-/* ── MOBILE NAV ── */
-.mobile-header {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
+.lb-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
   background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.mobile-logo {
-  font-family: var(--serif);
-  font-size: 1rem;
-  text-decoration: none;
-  color: var(--text);
-}
-
-.mobile-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
+  border: 1.5px solid var(--bg-deep);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--cocoa);
+  transition: background 0.15s;
+  line-height: 1;
 }
 
-.mobile-toggle span {
-  display: block;
-  width: 22px;
-  height: 1.5px;
-  background: var(--text);
+.lb-close:hover { background: var(--bg-deep); }
+
+.lb-prev, .lb-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(245,240,232,0.9);
+  border: 1.5px solid var(--bg-deep);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--cocoa);
+  transition: background 0.15s, transform 0.15s;
 }
 
-.mobile-nav-open .sidenav {
-  transform: translateX(0);
+.lb-prev { left: -52px; }
+.lb-next { right: -52px; }
+.lb-prev:hover, .lb-next:hover { background: var(--bg); transform: translateY(-50%) scale(1.08); }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .main-nav { display: none; }
+  .hamburger { display: flex; }
+  .lb-prev { left: 0.5rem; }
+  .lb-next { right: 0.5rem; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+  .project-grid { grid-template-columns: 1fr; }
+  .content-well { padding: 2.5rem 1.25rem 4rem; }
+  .work-hero { padding: 1.75rem 1.25rem; }
+  .sub-tabs { width: 100%; }
+  .sub-tab { flex: 1; text-align: center; padding: 0.45rem 0.75rem; }
+  .art-card { transform: none !important; }
+  .social-row { padding: 1.25rem; }
 }
 
-@media (max-width: 768px) {
-  .sidenav {
-    transform: translateX(-100%);
-    transition: transform 0.3s;
-    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
-  }
-  .main { margin-left: 0; padding-top: 56px; }
-  .mobile-header { display: flex; }
-  .portfolio-grid { grid-template-columns: 1fr; }
-  .masonry { columns: 1; }
-  .inner-page, .about-page, .links-page { padding: 2rem 1.5rem; }
+@media (prefers-reduced-motion: reduce) {
+  .art-card, .project-card, .lightbox-content { transition: none; animation: none; }
+  .art-card { transform: none !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- MOBILE HEADER -->
-<div class="mobile-header">
-  <a href="#" class="mobile-logo" onclick="showPage('portfolio'); return false;">Your Name</a>
-  <button class="mobile-toggle" onclick="document.body.classList.toggle('mobile-nav-open')">
-    <span></span><span></span><span></span>
-  </button>
+<!-- ══ HEADER ══ -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <button class="site-logo" onclick="showPage('personal')" style="background:none;border:none;text-align:left;">
+      Your Name
+      <span>illustration &amp; animation</span>
+    </button>
+
+    <nav class="main-nav" aria-label="Main navigation">
+
+      <div class="nav-item">
+        <button class="nav-btn" id="nav-personal" onclick="showPage('personal')">Personal Art</button>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-btn" id="nav-work" onclick="showPage('work')">
+          Work <span class="caret">▾</span>
+        </button>
+        <div class="nav-dropdown">
+          <button onclick="showPage('work'); showSub('animation')">Animation</button>
+          <button onclick="showPage('work'); showSub('games')">Mobile Games</button>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-btn" id="nav-contact" onclick="showPage('contact')">Contact</button>
+      </div>
+
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ══ MOBILE DRAWER ══ -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-backdrop" onclick="closeDrawer()"></div>
+  <div class="drawer-panel">
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <button class="drawer-btn" onclick="showPage('personal'); closeDrawer()">Personal Art</button>
+    <button class="drawer-btn" onclick="showPage('work'); showSub('animation'); closeDrawer()">Work — Animation</button>
+    <button class="drawer-btn drawer-sub" onclick="showPage('work'); showSub('animation'); closeDrawer()">↳ Animation</button>
+    <button class="drawer-btn drawer-sub" onclick="showPage('work'); showSub('games'); closeDrawer()">↳ Mobile Games</button>
+    <button class="drawer-btn" onclick="showPage('contact'); closeDrawer()">Contact</button>
+  </div>
 </div>
 
-<!-- SIDE NAV -->
-<nav class="sidenav">
-  <a href="#" class="nav-logo" onclick="showPage('portfolio'); return false;">
-    <!-- Replace with your logo image: <img src="images/logo.png" alt="Your Name"> -->
-    <div class="nav-logo-text">Your Name<span>Illustration & Concept Art</span></div>
-  </a>
+<!-- ══════════════════════════════════════════
+     PAGE: PERSONAL ART
+══════════════════════════════════════════ -->
+<main class="page active" id="page-personal">
+  <div class="content-well">
 
-  <div class="nav-section">
-    <div class="nav-section-label">Portfolio</div>
-    <ul>
-      <li><a href="#" onclick="showPage('portfolio'); return false;" id="nav-portfolio">Portfolio</a></li>
-      <li><a href="#" onclick="showPage('concept-art'); return false;" id="nav-concept-art">Concept Art</a></li>
-      <li><a href="#" onclick="showPage('illustration'); return false;" id="nav-illustration">Illustration</a></li>
-      <li><a href="#" onclick="showPage('plein-air'); return false;" id="nav-plein-air">Plein Air</a></li>
-      <li><a href="#" onclick="showPage('sketchbook'); return false;" id="nav-sketchbook">Sketchbook</a></li>
-    </ul>
-  </div>
-
-  <div class="nav-section sub">
-    <div class="nav-section-label">Concept Art</div>
-    <ul>
-      <li><a href="#" onclick="showPage('concept-art'); return false;">All Concept Art</a></li>
-      <li><a href="#" onclick="showPage('concept-art'); return false;">Project One</a></li>
-      <li><a href="#" onclick="showPage('concept-art'); return false;">Project Two</a></li>
-      <li><a href="#" onclick="showPage('concept-art'); return false;">Project Three</a></li>
-    </ul>
-  </div>
-
-  <div class="nav-section">
-    <ul>
-      <li><a href="#" onclick="showPage('about'); return false;" id="nav-about">About</a></li>
-      <li><a href="#" onclick="showPage('links'); return false;" id="nav-links">Links</a></li>
-    </ul>
-  </div>
-
-  <div class="nav-social">
-    <a href="https://instagram.com/yourusername" target="_blank">Instagram</a>
-    <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
-    <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
-    <a href="https://tumblr.com/yourusername" target="_blank">Tumblr</a>
-  </div>
-</nav>
-
-<!-- MAIN -->
-<main class="main">
-
-  <!-- PORTFOLIO PAGE -->
-  <div class="page active" id="page-portfolio">
-    <!-- Replace with your own full-width header image -->
-    <div class="header-image-placeholder">Your header image here — replace with &lt;img src="images/header.jpg"&gt;</div>
-
-    <div class="portfolio-grid">
-      <a class="portfolio-card" href="#" onclick="showPage('concept-art'); return false;">
-        <div class="portfolio-card-inner">
-          <!-- <img class="portfolio-card-img" src="images/concept-art-thumb.jpg" alt="Concept Art"> -->
-          <div class="portfolio-card-placeholder">Your image here</div>
-          <div class="portfolio-card-label">Concept Art</div>
-        </div>
-      </a>
-      <a class="portfolio-card" href="#" onclick="showPage('illustration'); return false;">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-card-placeholder">Your image here</div>
-          <div class="portfolio-card-label">Illustration</div>
-        </div>
-      </a>
-      <a class="portfolio-card" href="#" onclick="showPage('plein-air'); return false;">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-card-placeholder">Your image here</div>
-          <div class="portfolio-card-label">Plein Air</div>
-        </div>
-      </a>
-      <a class="portfolio-card" href="#" onclick="showPage('sketchbook'); return false;">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-card-placeholder">Your image here</div>
-          <div class="portfolio-card-label">Sketchbook</div>
-        </div>
-      </a>
+    <div class="page-intro">
+      <h1>Personal Art</h1>
+      <div class="wiggle"></div>
+      <p style="margin-top:1rem;">
+        Welcome to my little corner of the internet — a cozy mix of illustrations, experiments, and things I made just for the joy of making them.
+      </p>
     </div>
 
-    <footer class="site-footer">
-      <p class="footer-name">Your Name</p>
-      <p class="footer-title">Art Direction & Concept Art</p>
-      <p class="footer-email"><a href="mailto:your@email.com">your@email.com</a></p>
-      <p class="footer-social-label">find me elsewhere:</p>
-      <div class="footer-social">
-        <a href="https://instagram.com/yourusername" target="_blank">Instagram</a>
-        <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
-        <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
-        <a href="https://tumblr.com/yourusername" target="_blank">Tumblr</a>
+    <!-- Gallery — replace placeholder divs with <img> tags pointing to your images -->
+    <div class="gallery-grid" id="gallery-personal">
+
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 0)">
+        <div class="art-card-placeholder pc1">your image here</div>
+        <div class="art-card-caption"><h3>Afternoon Light</h3><p>Illustration</p></div>
       </div>
-    </footer>
-  </div>
 
-  <!-- CONCEPT ART PAGE -->
-  <div class="page" id="page-concept-art">
-    <div class="inner-page">
-      <h1>Concept Art</h1>
-      <p class="page-desc">Your description here — the kind of work you do, the projects you've worked on, what drives your process.</p>
-      <div class="masonry">
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:320px; background:#e8e4de;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:240px; background:#dde4e8;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:280px; background:#e4e8dd;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:360px; background:#e8dde4;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#dde8e4;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e4dde8;">Your image here</div></div>
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 1)">
+        <div class="art-card-placeholder pc2">your image here</div>
+        <div class="art-card-caption"><h3>Garden Study</h3><p>Watercolor</p></div>
       </div>
-    </div>
-  </div>
 
-  <!-- ILLUSTRATION PAGE -->
-  <div class="page" id="page-illustration">
-    <div class="inner-page">
-      <h1>Illustration</h1>
-      <p class="page-desc">Editorial, personal, and commercial illustration work.</p>
-      <div class="masonry">
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e8dde4;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#e8e4de;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:340px; background:#dde8e4;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:280px; background:#dde4e8;">Your image here</div></div>
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 2)">
+        <div class="art-card-placeholder pc3">your image here</div>
+        <div class="art-card-caption"><h3>Quiet Morning</h3><p>Digital</p></div>
       </div>
-    </div>
-  </div>
 
-  <!-- PLEIN AIR PAGE -->
-  <div class="page" id="page-plein-air">
-    <div class="inner-page">
-      <h1>Plein Air</h1>
-      <p class="page-desc">Paintings made outdoors, on location.</p>
-      <div class="masonry">
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:280px; background:#e4e8dd;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:320px; background:#dde4e8;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#e8e4de;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e4dde8;">Your image here</div></div>
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 3)">
+        <div class="art-card-placeholder pc4">your image here</div>
+        <div class="art-card-caption"><h3>Rainy Window</h3><p>Illustration</p></div>
       </div>
-    </div>
-  </div>
 
-  <!-- SKETCHBOOK PAGE -->
-  <div class="page" id="page-sketchbook">
-    <div class="inner-page">
-      <h1>Sketchbook</h1>
-      <p class="page-desc">Studies, experiments, and work in progress.</p>
-      <div class="masonry">
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:260px; background:#e8dde4;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:300px; background:#e4e8dd;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:320px; background:#dde8e4;">Your image here</div></div>
-        <div class="masonry-item"><div class="masonry-placeholder" style="height:240px; background:#e8e4de;">Your image here</div></div>
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 4)">
+        <div class="art-card-placeholder pc5">your image here</div>
+        <div class="art-card-caption"><h3>Late Summer</h3><p>Gouache</p></div>
       </div>
-    </div>
-  </div>
 
-  <!-- ABOUT PAGE -->
-  <div class="page" id="page-about">
-    <div class="about-page">
-      <h1>About</h1>
-      <!-- Replace with your photo: <img class="about-photo" src="images/photo.jpg" alt="Your Name"> -->
-      <div class="about-photo-placeholder">Your photo</div>
-      <p>Write a short bio here — who you are, what you do, where you're based, what you're working on right now.</p>
-      <p>A second paragraph about your background, your interests, the kind of work that excites you.</p>
-      <p>Keep it human and personal — people hire artists they connect with.</p>
-      <div class="about-contact">
-        <p>Get in touch: <a href="mailto:your@email.com">your@email.com</a></p>
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 5)">
+        <div class="art-card-placeholder pc6">your image here</div>
+        <div class="art-card-caption"><h3>Little Familiar</h3><p>Character</p></div>
       </div>
-    </div>
-  </div>
 
-  <!-- LINKS PAGE -->
-  <div class="page" id="page-links">
-    <div class="links-page">
-      <h1>Links</h1>
-      <ul class="links-list">
-        <li><a href="https://instagram.com/yourusername" target="_blank">Instagram <span>↗</span></a></li>
-        <li><a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky <span>↗</span></a></li>
-        <li><a href="https://twitter.com/yourusername" target="_blank">Twitter / X <span>↗</span></a></li>
-        <li><a href="https://tumblr.com/yourusername" target="_blank">Tumblr <span>↗</span></a></li>
-        <li><a href="https://artstation.com/yourusername" target="_blank">ArtStation <span>↗</span></a></li>
-      </ul>
-    </div>
-  </div>
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 6)">
+        <div class="art-card-placeholder pc7">your image here</div>
+        <div class="art-card-caption"><h3>Forest Path</h3><p>Environment</p></div>
+      </div>
 
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 7)">
+        <div class="art-card-placeholder pc8">your image here</div>
+        <div class="art-card-caption"><h3>Cozy Corner</h3><p>Illustration</p></div>
+      </div>
+
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 8)">
+        <div class="art-card-placeholder pc9">your image here</div>
+        <div class="art-card-caption"><h3>Night Market</h3><p>Digital</p></div>
+      </div>
+
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 9)">
+        <div class="art-card-placeholder pc10">your image here</div>
+        <div class="art-card-caption"><h3>Warm Hearth</h3><p>Illustration</p></div>
+      </div>
+
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 10)">
+        <div class="art-card-placeholder pc11">your image here</div>
+        <div class="art-card-caption"><h3>First Snow</h3><p>Gouache</p></div>
+      </div>
+
+      <div class="art-card" onclick="openLightbox(galleryPersonal, 11)">
+        <div class="art-card-placeholder pc12">your image here</div>
+        <div class="art-card-caption"><h3>Tea Time</h3><p>Character</p></div>
+      </div>
+
+    </div><!-- /gallery-grid -->
+  </div><!-- /content-well -->
 </main>
 
+<!-- ══════════════════════════════════════════
+     PAGE: WORK
+══════════════════════════════════════════ -->
+<main class="page" id="page-work">
+  <div class="content-well">
+
+    <div class="work-hero">
+      <h1>Professional Work</h1>
+      <div class="wiggle"></div>
+      <p style="margin-top:1rem;">
+        A selection of client and studio projects — from animated shorts to mobile games. Every project is a collaboration, and I love every step of it.
+      </p>
+      <div class="sub-tabs">
+        <button class="sub-tab active" id="sub-animation" onclick="showSub('animation')">✦ Animation</button>
+        <button class="sub-tab" id="sub-games" onclick="showSub('games')">✦ Mobile Games</button>
+      </div>
+    </div>
+
+    <!-- ANIMATION SUB-PAGE -->
+    <div class="sub-page active" id="subpage-animation">
+      <div class="sub-page-heading">
+        <div>
+          <h2>Animation</h2>
+          <p>Character animation, motion graphics, and short films.</p>
+        </div>
+      </div>
+      <div class="project-grid">
+
+        <div class="project-card" onclick="openLightbox(galleryAnimation, 0)">
+          <div class="project-card-thumb pc1">your image here</div>
+          <div class="project-card-body">
+            <h3>The Little Wanderer</h3>
+            <p>A 2-minute animated short about a small creature exploring a big world.</p>
+            <span class="project-tag">2D Animation</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryAnimation, 1)">
+          <div class="project-card-thumb pc4">your image here</div>
+          <div class="project-card-body">
+            <h3>Seasons Loop</h3>
+            <p>Looping seasonal transition animation for a brand campaign.</p>
+            <span class="project-tag">Motion Design</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryAnimation, 2)">
+          <div class="project-card-thumb pc7">your image here</div>
+          <div class="project-card-body">
+            <h3>Character Reel 2024</h3>
+            <p>Collection of character performances and walk cycles.</p>
+            <span class="project-tag">Character Anim.</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryAnimation, 3)">
+          <div class="project-card-thumb pc2">your image here</div>
+          <div class="project-card-body">
+            <h3>Midnight Kitchen</h3>
+            <p>Cutscene animation for an indie narrative game.</p>
+            <span class="project-tag">Game Cutscene</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryAnimation, 4)">
+          <div class="project-card-thumb pc9">your image here</div>
+          <div class="project-card-body">
+            <h3>Opening Title Sequence</h3>
+            <p>Animated intro for a podcast about folklore and storytelling.</p>
+            <span class="project-tag">Title Sequence</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryAnimation, 5)">
+          <div class="project-card-thumb pc6">your image here</div>
+          <div class="project-card-body">
+            <h3>Idle Animations</h3>
+            <p>Sprite sheet and idle animation set for a 2D platformer.</p>
+            <span class="project-tag">Sprite Animation</span>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /subpage-animation -->
+
+    <!-- GAMES SUB-PAGE -->
+    <div class="sub-page" id="subpage-games">
+      <div class="sub-page-heading">
+        <div>
+          <h2>Mobile Games</h2>
+          <p>Art direction, concept art, and UI illustration for mobile titles.</p>
+        </div>
+      </div>
+      <div class="project-grid">
+
+        <div class="project-card" onclick="openLightbox(galleryGames, 0)">
+          <div class="project-card-thumb pc3">your image here</div>
+          <div class="project-card-body">
+            <h3>Pocket Forest</h3>
+            <p>Art direction and UI illustration for a cozy forest-building mobile game.</p>
+            <span class="project-tag">Art Direction</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryGames, 1)">
+          <div class="project-card-thumb pc5">your image here</div>
+          <div class="project-card-body">
+            <h3>Star Pudding</h3>
+            <p>Character design and concept art for a puzzle platformer.</p>
+            <span class="project-tag">Concept Art</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryGames, 2)">
+          <div class="project-card-thumb pc8">your image here</div>
+          <div class="project-card-body">
+            <h3>Fishbowl World</h3>
+            <p>Environment design and icon set for a casual mobile title.</p>
+            <span class="project-tag">Environment</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openLightbox(galleryGames, 3)">
+          <div class="project-card-thumb pc10">your image here</div>
+          <div class="project-card-body">
+            <h3>Noodle Quest</h3>
+            <p>Promotional key art and in-game illustration.</p>
+            <span class="project-tag">Key Art</span>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /subpage-games -->
+
+  </div>
+</main>
+
+<!-- ══════════════════════════════════════════
+     PAGE: CONTACT
+══════════════════════════════════════════ -->
+<main class="page" id="page-contact">
+  <div class="contact-wrap">
+
+    <div class="contact-card">
+      <h1>Say hello ✉︎</h1>
+      <div class="wiggle"></div>
+      <p style="margin-top:1rem;">
+        Whether you have a project in mind, a collaboration idea, or just want to chat about art and games — I'd love to hear from you. I try to reply within a few days!
+      </p>
+      <a class="contact-email" href="mailto:your@email.com">
+        ✦ your@email.com
+      </a>
+    </div>
+
+    <div class="social-row">
+      <a class="social-link" href="https://instagram.com/yourusername" target="_blank" rel="noopener">
+        Instagram ↗
+      </a>
+      <a class="social-link" href="https://twitter.com/yourusername" target="_blank" rel="noopener">
+        Twitter / X ↗
+      </a>
+      <a class="social-link" href="https://bsky.app/profile/yourusername" target="_blank" rel="noopener">
+        Bluesky ↗
+      </a>
+      <a class="social-link" href="https://artstation.com/yourusername" target="_blank" rel="noopener">
+        ArtStation ↗
+      </a>
+      <a class="social-link" href="https://tumblr.com/yourusername" target="_blank" rel="noopener">
+        Tumblr ↗
+      </a>
+    </div>
+
+    <p class="contact-note">
+      For commissions, please read my commission info before reaching out. ✦
+    </p>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <em>Your Name</em> <span class="dot-accent"></span> Art & Illustration <span class="dot-accent"></span> © 2025
+</footer>
+
+<!-- ══════════════════════════════════════════
+     LIGHTBOX
+══════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <div class="lightbox-content">
+    <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+    <div class="lightbox-img-wrap" id="lbImgWrap"></div>
+    <div class="lightbox-caption">
+      <h3 id="lbTitle"></h3>
+      <p id="lbSub"></p>
+    </div>
+  </div>
+  <button class="lb-next" id="lbNext" aria-label="Next">›</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
 <script>
+/* ── Gallery data arrays ──
+   Replace `null` with an image path like `'images/myart.jpg'`
+   to show your actual work in the lightbox.
+   The title and sub fields are the caption text.                */
+
+const galleryPersonal = [
+  { src: null, title: 'Afternoon Light',  sub: 'Illustration',  color: '#D4C4B0', text: '#8B7355' },
+  { src: null, title: 'Garden Study',     sub: 'Watercolor',    color: '#C8D4C0', text: '#6B8060' },
+  { src: null, title: 'Quiet Morning',    sub: 'Digital',       color: '#D4C8C0', text: '#8B6B60' },
+  { src: null, title: 'Rainy Window',     sub: 'Illustration',  color: '#C0CCD4', text: '#607080' },
+  { src: null, title: 'Late Summer',      sub: 'Gouache',       color: '#D4C0C8', text: '#806070' },
+  { src: null, title: 'Little Familiar',  sub: 'Character',     color: '#C8D0C0', text: '#708060' },
+  { src: null, title: 'Forest Path',      sub: 'Environment',   color: '#D8C8A8', text: '#887048' },
+  { src: null, title: 'Cozy Corner',      sub: 'Illustration',  color: '#C0D4C8', text: '#608070' },
+  { src: null, title: 'Night Market',     sub: 'Digital',       color: '#D0C8D4', text: '#706880' },
+  { src: null, title: 'Warm Hearth',      sub: 'Illustration',  color: '#DCC8B0', text: '#8A6840' },
+  { src: null, title: 'First Snow',       sub: 'Gouache',       color: '#C4D4BC', text: '#648060' },
+  { src: null, title: 'Tea Time',         sub: 'Character',     color: '#D8C0BC', text: '#886060' },
+];
+
+const galleryAnimation = [
+  { src: null, title: 'The Little Wanderer',    sub: '2D Animation',    color: '#D4C4B0', text: '#8B7355' },
+  { src: null, title: 'Seasons Loop',           sub: 'Motion Design',   color: '#C0CCD4', text: '#607080' },
+  { src: null, title: 'Character Reel 2024',    sub: 'Character Anim.', color: '#D8C8A8', text: '#887048' },
+  { src: null, title: 'Midnight Kitchen',       sub: 'Game Cutscene',   color: '#C8D4C0', text: '#6B8060' },
+  { src: null, title: 'Opening Title Sequence', sub: 'Title Sequence',  color: '#D0C8D4', text: '#706880' },
+  { src: null, title: 'Idle Animations',        sub: 'Sprite Animation',color: '#C8D0C0', text: '#708060' },
+];
+
+const galleryGames = [
+  { src: null, title: 'Pocket Forest', sub: 'Art Direction', color: '#D4C8C0', text: '#8B6B60' },
+  { src: null, title: 'Star Pudding',  sub: 'Concept Art',   color: '#D4C0C8', text: '#806070' },
+  { src: null, title: 'Fishbowl World',sub: 'Environment',   color: '#C0D4C8', text: '#608070' },
+  { src: null, title: 'Noodle Quest',  sub: 'Key Art',       color: '#DCC8B0', text: '#8A6840' },
+];
+
+/* ── Page switching ── */
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sidenav a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  var navEl = document.getElementById('nav-' + name);
-  if (navEl) navEl.classList.add('active');
-  document.body.classList.remove('mobile-nav-open');
+  var nb = document.getElementById('nav-' + name);
+  if (nb) nb.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// Close mobile nav on outside click
-document.addEventListener('click', function(e) {
-  if (document.body.classList.contains('mobile-nav-open')) {
-    if (!e.target.closest('.sidenav') && !e.target.closest('.mobile-toggle')) {
-      document.body.classList.remove('mobile-nav-open');
-    }
+/* ── Sub-page switching (Work) ── */
+function showSub(name) {
+  document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('subpage-' + name).classList.add('active');
+  document.getElementById('sub-' + name).classList.add('active');
+}
+
+/* ── Mobile drawer ── */
+function openDrawer()  { document.getElementById('mobileDrawer').classList.add('open'); }
+function closeDrawer() { document.getElementById('mobileDrawer').classList.remove('open'); }
+
+/* ── Lightbox ── */
+var lbGallery = [];
+var lbIndex = 0;
+
+function openLightbox(gallery, index) {
+  lbGallery = gallery;
+  lbIndex = index;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderLightbox() {
+  var item = lbGallery[lbIndex];
+  var wrap = document.getElementById('lbImgWrap');
+
+  if (item.src) {
+    wrap.innerHTML = '<img src="' + item.src + '" alt="' + item.title + '">';
+  } else {
+    wrap.innerHTML = '<div class="lb-placeholder" style="background:' + item.color + ';color:' + item.text + ';min-height:320px;width:100%;">your image here</div>';
   }
+
+  document.getElementById('lbTitle').textContent = item.title;
+  document.getElementById('lbSub').textContent   = item.sub;
+  document.getElementById('lbPrev').style.opacity = lbIndex === 0 ? '0.3' : '1';
+  document.getElementById('lbNext').style.opacity = lbIndex === lbGallery.length - 1 ? '0.3' : '1';
+}
+
+document.getElementById('lbClose').onclick = closeLightbox;
+
+document.getElementById('lbPrev').onclick = function() {
+  if (lbIndex > 0) { lbIndex--; renderLightbox(); }
+};
+
+document.getElementById('lbNext').onclick = function() {
+  if (lbIndex < lbGallery.length - 1) { lbIndex++; renderLightbox(); }
+};
+
+// Close on backdrop click
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
 });
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft'  && lbIndex > 0) { lbIndex--; renderLightbox(); }
+  if (e.key === 'ArrowRight' && lbIndex < lbGallery.length - 1) { lbIndex++; renderLightbox(); }
+});
+
+// Set initial active nav
+document.getElementById('nav-personal').classList.add('active');
 </script>
 </body>
 </html>
